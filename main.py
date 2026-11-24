@@ -11,6 +11,10 @@ JOKE = "My standup update never changes: yesterday I was in meetings, today I'll
 
 
 def main() -> None:
+    # Kit gate: entry must be 1-200 characters, a single line, not only whitespace.
+    assert 1 <= len(JOKE) <= 200, "joke must be 1-200 characters"
+    assert "\n" not in JOKE and "\r" not in JOKE, "joke must be a single line"
+    assert JOKE.strip(), "joke must not be only whitespace"
     out_path = os.environ.get("OUTPUT_PATH", "/output/entry.txt")
     parent = os.path.dirname(out_path)
     if parent:
